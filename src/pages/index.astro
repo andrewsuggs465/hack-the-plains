@@ -31,7 +31,7 @@ const facts: { label: string; lines: Line[] }[] = [
       `With the ${event.partners[0].name}`,
     ],
   },
-  { label: 'Who', lines: [event.who, event.capacity] },
+  { label: 'Who', lines: [event.who] },
   { label: 'Registration', lines: [reg.status === 'open' ? { text: regLine, href: reg.url } : regLine] },
   { label: 'Cost', lines: [event.cost] },
   { label: 'Theme', lines: [event.theme] },
@@ -95,14 +95,23 @@ const jsonLd = {
     <h2>Schedule</h2>
     <div class="days">
       {schedule.map((d: any) => (
-        <table class="day">
-          <caption>{d.day}</caption>
-          <tbody>
-            {d.rows.map((r: any) => (
-              <tr><th scope="row">{r.time}</th><td><Text value={r.item} /></td></tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          <table class="day">
+            <caption>{d.day}</caption>
+            <tbody>
+              {d.rows.map((r: any) => (
+                <tr>
+                  <th scope="row"><Text value={r.time} /></th>
+                  <td>
+                    <Text value={r.item} />
+                    {r.note && <p class="muted row-note">{r.note}</p>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {d.note && <p class="muted day-note">{d.note}</p>}
+        </div>
       ))}
     </div>
   </section>
@@ -221,6 +230,9 @@ const jsonLd = {
     width: 6.5rem;
     padding-right: var(--s4);
   }
+
+  .row-note { margin-top: var(--s1); }
+  .day-note { margin-top: var(--s3); }
 
   .faq { border-top: 1px solid var(--rule); }
   .faq details { border-bottom: 1px solid var(--rule); }

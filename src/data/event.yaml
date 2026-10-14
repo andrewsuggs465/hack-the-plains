@@ -7,18 +7,17 @@ year: 2027
 
 # Used for the calendar file and search results. Central time.
 start: 2027-01-22T17:00:00-06:00
-end: 2027-01-24T12:00:00-06:00
+end: 2027-01-24T13:00:00-06:00
 dates: January 22–24, 2027
-hours: Friday 5:00 PM to Sunday 12:00 PM
+hours: Friday 5:00 PM to Sunday 1:00 PM
 
 venue: Brown-Kopel Engineering Student Achievement Center
 room: Grand Hall A and B, third floor
 address: 152 Wilmore Dr, Auburn, AL 36849   # also used for the map link
 city: Auburn University, Auburn, AL
-capacity: Up to 60 students
-who: Auburn students
-cost: "COPY: cost to attend"
-theme: Announced later
+who: Up to 60 Auburn students
+cost: TBD
+theme: TBA
 
 lede: "COPY: one or two sentences pitching the event to students"
 
@@ -28,7 +27,7 @@ lede: "COPY: one or two sentences pitching the event to students"
 #   closed    shows "Registration is closed"
 registration:
   status: upcoming
-  opens: TBD
+  opens: December 1, 8:00 AM
   url: ""
 
 sponsor_form: ""   # sponsor interest form link, TBD

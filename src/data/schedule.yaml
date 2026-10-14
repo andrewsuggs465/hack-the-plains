@@ -1,17 +1,50 @@
 # One entry per day. Rows show in the order written.
+# note (optional) shows under a row or under a day's table.
 - day: Friday, January 22
   rows:
     - time: 5:00 PM
-      item: Event starts
-    - time: TBD
-      item: "COPY: schedule item"
+      item: Registration and team formation
+      note: Teams sit together at their tables.
+    - time: 6:00 PM
+      item: Dinner and keynote speaker
+    - time: 6:30 PM
+      item: Event kickoff
+      note: Rules, expectations, and logistics.
+    - time: 7:00 PM
+      item: Design problems released
+      note: Teams get their design constraints and problems, then plan, work around expected challenges, and write code. No physical work.
+    - time: 8:00 PM
+      item: Advisor check-in
+    - time: 10:00 PM
+      item: Day 1 wrap-up
 - day: Saturday, January 23
+  note: Teams may work around the clock Saturday into Sunday, but no physical work (soldering, etc.) outside Makerspace hours.
   rows:
-    - time: TBD
-      item: "COPY: schedule item"
+    - time: 8:00 AM
+      item: Makerspace opens
+    - time: 9:00 AM
+      item: Breakfast
+    - time: 11:00 AM
+      item: Advisor check-in 2
+    - time: 12:00 PM
+      item: Lunch
+    - time: 5:00 PM
+      item: Advisor check-in 3
+    - time: 6:00 PM
+      item: Dinner
+    - time: 8:00 PM
+      item: Makerspace closes
 - day: Sunday, January 24
   rows:
-    - time: TBD
-      item: "COPY: schedule item"
+    - time: 8:00 AM
+      item: Final advisor check-in
+    - time: 8:00 AM
+      item: Makerspace opens
+    - time: 10:00 AM
+      item: Makerspace closes, team presentations begin
     - time: 12:00 PM
-      item: Event ends
+      item: Judging
+    - time: 12:30 PM
+      item: Awards
+    - time: 1:00 PM
+      item: Dismissal
