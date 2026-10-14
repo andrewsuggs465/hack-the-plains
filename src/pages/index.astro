@@ -16,11 +16,23 @@ const regLine = {
   upcoming: `Opens ${reg.opens}`,
   closed: 'Closed',
 }[reg.status as string];
-const facts: { label: string; lines: string[]; href?: string }[] = [
+// Google Maps search URLs open the app on phones and work without an API key.
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`;
+
+type Line = string | { text: string; href: string };
+const facts: { label: string; lines: Line[] }[] = [
   { label: 'When', lines: [event.dates, event.hours] },
-  { label: 'Where', lines: [event.venue, event.city, `With the ${event.partners[0].name}`] },
+  {
+    label: 'Where',
+    lines: [
+      event.venue,
+      event.room,
+      { text: event.address, href: mapUrl },
+      `With the ${event.partners[0].name}`,
+    ],
+  },
   { label: 'Who', lines: [event.who, event.capacity] },
-  { label: 'Registration', lines: [regLine], href: reg.status === 'open' ? reg.url : undefined },
+  { label: 'Registration', lines: [reg.status === 'open' ? { text: regLine, href: reg.url } : regLine] },
   { label: 'Cost', lines: [event.cost] },
   { label: 'Theme', lines: [event.theme] },
 ];
@@ -40,7 +52,7 @@ const jsonLd = {
   startDate: new Date(event.start).toISOString(),
   endDate: new Date(event.end).toISOString(),
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  location: { '@type': 'Place', name: event.venue, address: event.city },
+  location: { '@type': 'Place', name: `${event.venue}, ${event.room}`, address: event.address },
   organizer: event.hosts.map((h: any) => ({ '@type': 'Organization', name: h.name, url: h.url || undefined })),
   description: event.lede.startsWith('COPY:') ? undefined : event.lede,
 };
@@ -72,7 +84,7 @@ const jsonLd = {
         <div>
           <dt>{f.label}</dt>
           {f.lines.map((l) => (
-            <dd>{f.href ? <a href={f.href}>{l}</a> : <Text value={l} />}</dd>
+            <dd>{typeof l === 'string' ? <Text value={l} /> : <a href={l.href}>{l.text}</a>}</dd>
           ))}
         </div>
       ))}
