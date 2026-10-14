@@ -43,6 +43,6 @@ All from the designer. Put them in `public/` and reference them by path.
 
 ## Deploy
 
-Pushing to `main` deploys to GitHub Pages: https://andrewsuggs465.github.io/hack-the-plains/
+Pushing to `main` deploys to GitHub Pages at https://hacktheplains.org.
 
-Links to files in `public/` must go through `url()` from `src/lib/url.ts` so the `/hack-the-plains` base path is added. To move to a domain, follow the comment in `astro.config.mjs`.
+Link to files in `public/` through `url()` from `src/lib/url.ts`.
