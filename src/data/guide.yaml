@@ -1,4 +1,4 @@
-# The /rules page. Sections show in the order written.
+# The /guide page. Sections show in the order written.
 # Each section has a title, and text, times, or both.
 # Times repeat schedule.yaml; when one changes, change the other.
 
@@ -8,6 +8,12 @@
 - title: Teams
   text: Teams form at registration, Friday 5:00 PM, and sit together at their tables.
   more: "COPY: team size limits"
+
+- title: Expectations
+  text: "COPY: event expectations and guidelines"
+
+- title: AI policy
+  text: "COPY: policy on AI tools"
 
 - title: Friday
   text: Teams get their design constraints and problems at 7:00 PM, then plan, work around expected challenges, and write code. No physical work.
@@ -23,7 +29,8 @@
 - title: Working overnight
   text: Teams may work around the clock Saturday into Sunday, but no physical work (soldering, etc.) outside Makerspace hours.
 
-- title: Advisor check-ins
+- title: Advisors
+  text: "COPY: what advisors do and how teams work with them"
   times:
     - when: Friday 8:00 PM
       what: Check-in 1
@@ -34,15 +41,19 @@
     - when: Sunday 8:00 AM
       what: Final check-in
 
-- title: Presentations and judging
+- title: Judging
   times:
     - when: Sunday 10:00 AM
       what: Team presentations
     - when: Sunday 12:00 PM
       what: Judging
+  more: "COPY: judging criteria"
+
+- title: Prizes and awards
+  text: "COPY: prizes and award categories"
+  times:
     - when: Sunday 12:30 PM
       what: Awards
-  more: "COPY: judging criteria"
 
 - title: What to bring
   text: "COPY: what teams can bring (laptops, parts, code written before the event)"

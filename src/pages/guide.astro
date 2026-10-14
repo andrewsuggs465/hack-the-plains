@@ -1,15 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Text from '../components/Text.astro';
-import rules from '../data/rules.yaml';
+import guide from '../data/guide.yaml';
 import { url } from '../lib/url';
 ---
-<Layout title="Rules">
+<Layout title="Participant guide">
   <section class="frame page">
-    <h1>Rules</h1>
+    <h1>Participant guide</h1>
 
-    <div class="rules">
-      {rules.map((r: any) => (
+    <div class="guide">
+      {guide.map((r: any) => (
         <section>
           <h2>{r.title}</h2>
           {r.text && <p><Text value={r.text} /></p>}
@@ -41,23 +41,23 @@ import { url } from '../lib/url';
     margin-bottom: var(--s6);
   }
 
-  /* One column at the 65ch measure: rules are read top to bottom, and the
+  /* One column at the 65ch measure: the guide is read top to bottom, and the
      time tables stay narrow enough to scan. */
-  .rules {
+  .guide {
     display: grid;
     gap: var(--s6);
     max-width: var(--measure);
   }
 
   /* Same construction as the schedule: bold heading on a 2px ink rule. */
-  .rules h2 {
+  .guide h2 {
     font-size: inherit;
     padding-bottom: var(--s2);
     margin-bottom: var(--s3);
     border-bottom: 2px solid var(--ink);
   }
-  .rules p + table,
-  .rules table + p { margin-top: var(--s3); }
+  .guide p + table,
+  .guide table + p { margin-top: var(--s3); }
 
   table { width: 100%; border-collapse: collapse; }
   th, td {

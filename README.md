@@ -20,7 +20,7 @@ All text lives in `src/data/`:
 | `faq.yaml` | FAQ |
 | `sponsors.yaml` | Sponsor logos on the home page (hidden while empty) |
 | `sponsorship.yaml` | `/sponsor` |
-| `rules.yaml` | `/rules` (times repeat `schedule.yaml`) |
+| `guide.yaml` | `/guide` (times repeat `schedule.yaml`) |
 
 Text starting with `COPY:` shows on the site with a dashed outline until replaced.
 
