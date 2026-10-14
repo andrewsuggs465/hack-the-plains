@@ -1,0 +1,22 @@
+---
+import { url } from '../lib/url';
+// A host or partner: logo if there is one, otherwise the name as text.
+interface Props { org: { name: string; url?: string; logo?: string } }
+const { org } = Astro.props;
+const Tag = org.url ? 'a' : 'span';
+---
+<Tag class="org" href={org.url || undefined}>
+  {org.logo ? <img src={url(org.logo)} alt={org.name} height="48" /> : org.name}
+</Tag>
+
+<style>
+  .org {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    font-weight: 650;
+  }
+  span.org { color: var(--ink); }
+  /* 48px tall keeps the MAKERSPACE lettering legible (~9px cap height). */
+  .org img { height: 48px; width: auto; }
+</style>

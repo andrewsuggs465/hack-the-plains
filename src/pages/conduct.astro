@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Text from '../components/Text.astro';
+---
+<Layout title="Code of Conduct">
+  <section class="frame page">
+    <h1>Code of Conduct</h1>
+    <div class="prose">
+      <p><Text value="COPY: code of conduct" /></p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page { padding-block: var(--s6) var(--s7); }
+  h1 {
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s5);
+  }
+</style>

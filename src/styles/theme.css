@@ -1,0 +1,18 @@
+/*
+  Theme. Changing the event theme means editing this file and nothing else.
+
+  Contrast is measured against --paper. Any replacement must keep:
+    --ink, --ink-2   at 4.5:1 or better on --paper (body text, WCAG AA)
+    --accent         at 4.5:1 or better on --paper AND with --paper on it,
+                     because it is both link text and the button fill.
+*/
+:root {
+  --paper: #f5f3ec;          /* warm off-white; pure #fff glares on large areas */
+  --ink: #191c19;            /* 15.5:1 */
+  --ink-2: #4d534d;          /* 7.1:1, secondary text */
+  --accent: #1e6a42;         /* 5.9:1 both ways, links and the primary button */
+  --accent-strong: #14502f;  /* 8.5:1, hover and active state of accent */
+
+  /* Derived. Ink at 18% reads as a hairline without competing with text. */
+  --rule: color-mix(in srgb, var(--ink) 18%, transparent);
+}

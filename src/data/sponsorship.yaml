@@ -1,0 +1,87 @@
+# The /sponsor page. Text is from the 2027 sponsorship packet.
+
+lede: >-
+  Sixty Auburn engineering students spend Friday evening through Sunday noon
+  designing, soldering, and debugging hardware, then demo what they built.
+  Sponsors fund the parts and spend the weekend working next to the students.
+
+summary:
+  - label: Format
+    value: Student-built hardware hackathon, Friday 5 PM to Sunday noon
+  - label: Venue
+    value: Brown-Kopel Engineering Student Achievement Center, in partnership with the Auburn Makerspace
+  - label: Audience
+    value: 60 students across engineering, mostly computer and electrical engineering, computer science, and software engineering
+  - label: Hosts
+    value: AU Mesh Club with the Auburn IEEE chapter
+
+# Highest tier last. Each benefit lists the tiers that get it.
+tiers:
+  - name: Bronze
+    price: $250
+  - name: Silver
+    price: $750
+  - name: Gold
+    price: $2,000
+  - name: Title
+    price: $4,000
+
+benefits:
+  - text: Logo on the event website and venue signage
+    tiers: [Bronze, Silver, Gold, Title]
+  - text: Named in the opening and closing ceremonies
+    tiers: [Bronze, Silver, Gold, Title]
+  - text: Logo on the event t-shirt
+    tiers: [Silver, Gold, Title]
+  - text: Recruiting table on site all day Sunday
+    tiers: [Silver, Gold, Title]
+  - text: Resume book from participating students
+    tiers: [Silver, Gold, Title]
+  - text: Swag or literature in every hacker bag
+    tiers: [Silver, Gold, Title]
+  - text: Named award for a technical goal you set
+    tiers: [Gold, Title]
+  - text: 30-minute workshop or technical talk
+    tiers: [Gold, Title]
+  - text: Seat on the judging panel
+    tiers: [Gold, Title]
+  - text: Named in the event title and all press
+    tiers: [Title]
+  - text: Opening keynote slot
+    tiers: [Title]
+  - text: Top billing on every surface, one sponsor only
+    tiers: [Title]
+
+tier_note: >-
+  The event is student-led. Teams pick their own projects, so sponsor awards
+  are written as goals to hit, such as best use of a given board or radio,
+  rather than as assigned builds.
+
+funding_intro: >-
+  Sponsorship goes straight into the event. The club takes no cut and spends
+  nothing on overhead.
+funding:
+  - label: Hardware
+    text: Microcontrollers, sensors, radios, and the consumables sixty students burn through in a weekend.
+  - label: Food
+    text: Five meals and overnight coffee, since teams stay in the building overnight.
+  - label: Prizes
+    text: The award budget for the general competition and the named sponsor awards.
+  - label: Operations
+    text: Makerspace staffing for after-hours access, printing, signage, and shirts.
+
+in_kind_intro: >-
+  In-kind support counts toward a tier at fair market value, and for a
+  hardware event it is often worth more to us than cash.
+in_kind:
+  - Development boards, modules, and sensors
+  - 3D printing filament
+  - Cloud credits and API access
+  - Test equipment on loan for the weekend
+  - Catering, or engineers willing to mentor for a few hours
+in_kind_outro: Tell us what you have and we will match it to a tier.
+
+closing: Sponsorship is open for the 2027 event.
+closing_detail: Pick a tier and we will send a one-page agreement.
+
+packet: /hack-the-plains-sponsorship.pdf

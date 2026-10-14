@@ -1,0 +1,9 @@
+# Confirmed sponsors. The Sponsors section on the home page stays hidden
+# while this list is empty. tier must match a name in tiers.yaml.
+# Logos go in public/logos/sponsors/.
+#
+# - name: Example Co
+#   tier: Gold
+#   url: https://example.com
+#   logo: /logos/sponsors/example.svg
+[]

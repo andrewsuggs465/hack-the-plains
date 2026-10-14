@@ -1,0 +1,147 @@
+/* Layout and type. Colors come from theme.css only. */
+:root {
+  --font: 'Libre Franklin Variable', 'Libre Franklin', 'Franklin Gothic Medium',
+    'Franklin Gothic', Arial, sans-serif;
+
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 40px;
+  --s7: 64px;
+
+  /* 72rem holds the hero and the facts list side by side with room for a
+     65ch measure in the left column. Wider screens get even gutters. */
+  --frame: 72rem;
+  /* 65 characters keeps body lines in the 45 to 75 range readers scan best. */
+  --measure: 65ch;
+  /* 16px side gutter at 375px leaves a 343px column. */
+  --gutter: var(--s4);
+
+  --radius: 2px;
+}
+
+@media (min-width: 640px) {
+  :root { --gutter: var(--s6); }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  /* 17px body: Libre Franklin has a small x-height, 16px reads cramped. */
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent); text-underline-offset: 0.15em; }
+a:hover { color: var(--accent-strong); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Width, not padding, so section rules line up with the content edge
+   instead of running into the gutter. */
+.frame {
+  width: min(100% - 2 * var(--gutter), var(--frame));
+  margin-inline: auto;
+}
+
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-top: var(--s4); }
+
+.muted { color: var(--ink-2); }
+
+/* Sections are separated by a rule, not a background shift: nothing on
+   this page is nested deeply enough to need a second surface color. */
+.section {
+  padding-block: var(--s6);
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 900px) {
+  .section { padding-block: var(--s7); }
+}
+.section > h2 { margin-bottom: var(--s5); }
+
+/* Buttons. One solid (the primary action), one outlined. */
+.btn {
+  display: inline-block;
+  padding: var(--s3) var(--s5);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 650;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.btn-solid { background: var(--accent); color: var(--paper); }
+.btn-solid:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: var(--paper); }
+.btn-outline { color: var(--accent); }
+.btn-outline:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  align-items: center;
+}
+
+/* Ruled definition list: label column, value column. Used for event facts. */
+.facts { border-top: 1px solid var(--rule); }
+.facts div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: var(--s4);
+  padding-block: var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.facts dt { color: var(--ink-2); }
+
+/* Unwritten copy. Visible on purpose so it cannot ship unnoticed. */
+.copy-todo {
+  outline: 1px dashed var(--ink-2);
+  outline-offset: 2px;
+  color: var(--ink-2);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a, .btn { transition: color 120ms, background-color 120ms, border-color 120ms; }
+}

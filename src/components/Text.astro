@@ -1,0 +1,10 @@
+---
+// Renders a string from the data files. Strings starting with "COPY:" are
+// unwritten copy and get the dashed placeholder style.
+interface Props { value: string }
+const { value } = Astro.props;
+const todo = typeof value === 'string' && value.startsWith('COPY:');
+// Keep "12:00 PM" together so times never break across lines.
+const text = typeof value === 'string' ? value.replace(/(\d) (AM|PM)\b/g, '$1\u00a0$2') : value;
+---
+{todo ? <span class="copy-todo">{value}</span> : text}

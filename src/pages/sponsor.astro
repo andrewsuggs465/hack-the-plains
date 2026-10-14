@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import event from '../data/event.yaml';
+import sp from '../data/sponsorship.yaml';
+import { url } from '../lib/url';
+
+const has = (b: any, tier: string) => b.tiers.includes(tier);
+const mail = `mailto:${event.email}?subject=${encodeURIComponent(`${event.name} ${event.year} sponsorship`)}`;
+---
+<Layout title="Sponsor" description={sp.lede}>
+  <section class="intro frame">
+    <h1>Sponsor {event.name}</h1>
+    <p class="muted">{event.dates}, {event.city}</p>
+    <p class="prose">{sp.lede}</p>
+    <div class="actions">
+      {event.sponsor_form
+        ? <a class="btn btn-solid" href={event.sponsor_form}>Sponsor interest form</a>
+        : <a class="btn btn-solid" href={mail}>Email the organizers</a>}
+      <a class="btn btn-outline" href={url(sp.packet)}>Sponsorship packet (PDF)</a>
+    </div>
+    <dl class="facts summary">
+      {sp.summary.map((r: any) => <div><dt>{r.label}</dt><dd>{r.value}</dd></div>)}
+    </dl>
+  </section>
+
+  <section class="section frame" id="tiers">
+    <h2>What you get</h2>
+
+    <!-- Wide screens: one matrix. Under 640px, 5 columns leave under 170px
+         for benefit text, so each tier becomes its own list instead. -->
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th scope="col"><span class="visually-hidden">Benefit</span></th>
+          {sp.tiers.map((t: any) => (
+            <th scope="col">{t.name}<span class="price">{t.price}</span></th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {sp.benefits.map((b: any) => (
+          <tr>
+            <th scope="row">{b.text}</th>
+            {sp.tiers.map((t: any) => (
+              <td>{has(b, t.name)
+                ? <><span aria-hidden="true">✓</span><span class="visually-hidden">Included</span></>
+                : <><span class="no" aria-hidden="true">–</span><span class="visually-hidden">Not included</span></>}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <!-- Tiers are cumulative, so each list shows only what that tier adds. -->
+    <div class="tier-lists">
+      {sp.tiers.map((t: any, i: number) => {
+        const prev = sp.tiers[i - 1];
+        const adds = sp.benefits.filter((b: any) => has(b, t.name) && !(prev && has(b, prev.name)));
+        return (
+          <div class="tier">
+            <h3>{t.name} <span class="price">{t.price}</span></h3>
+            {prev && <p class="muted plus">Everything in {prev.name}, plus</p>}
+            <ul>{adds.map((b: any) => <li>{b.text}</li>)}</ul>
+          </div>
+        );
+      })}
+    </div>
+
+    <p class="prose muted note">{sp.tier_note}</p>
+  </section>
+
+  <section class="section frame two-col">
+    <div class="prose">
+      <h2>What we get</h2>
+      <p>{sp.funding_intro}</p>
+      <dl class="facts">
+        {sp.funding.map((f: any) => <div><dt>{f.label}</dt><dd>{f.text}</dd></div>)}
+      </dl>
+    </div>
+    <div class="prose">
+      <h2>In-kind sponsorship</h2>
+      <p>{sp.in_kind_intro}</p>
+      <ul>{sp.in_kind.map((i: string) => <li>{i}</li>)}</ul>
+      <p>{sp.in_kind_outro}</p>
+    </div>
+  </section>
+
+  <section class="section frame">
+    <h2>{sp.closing}</h2>
+    <p>{sp.closing_detail}</p>
+    <p class="actions closing"><a class="btn btn-solid" href={mail}>{event.email}</a></p>
+  </section>
+</Layout>
+
+<style>
+  .intro {
+    padding-block: var(--s6) var(--s7);
+  }
+  .intro > * + * { margin-top: var(--s4); }
+  .intro .actions { margin-top: var(--s5); }
+  .summary { margin-top: var(--s6) !important; max-width: 52rem; }
+
+  h1 {
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .price {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .matrix {
+    display: none;
+    width: 100%;
+    max-width: 60rem;
+    border-collapse: collapse;
+  }
+  .matrix th, .matrix td {
+    padding: var(--s3) var(--s4);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .matrix thead th { font-weight: 700; vertical-align: bottom; border-bottom: 2px solid var(--ink); }
+  .matrix tbody th { text-align: left; font-weight: 400; padding-left: 0; }
+  .matrix td { color: var(--accent); font-weight: 700; width: 7rem; }
+  .matrix .no { color: var(--rule); }
+
+  .tier-lists { display: grid; gap: var(--s6); }
+  .tier h3 {
+    display: flex;
+    gap: var(--s3);
+    align-items: baseline;
+    padding-bottom: var(--s2);
+    border-bottom: 2px solid var(--ink);
+  }
+  .tier h3 .price { display: inline; }
+  .tier .plus { padding-top: var(--s2); }
+  .tier ul { list-style: none; padding: 0; }
+  .tier li { padding-block: var(--s2); border-bottom: 1px solid var(--rule); }
+
+  @media (min-width: 640px) {
+    .matrix { display: table; }
+    .tier-lists { display: none; }
+  }
+
+  .note { margin-top: var(--s5); }
+  .closing { margin-top: var(--s5); }
+
+  .two-col { display: grid; gap: var(--s7); }
+  .two-col h2 { margin-bottom: var(--s4); }
+  .two-col ul { padding-left: 1.2em; }
+  .two-col .facts dt { color: var(--ink); font-weight: 650; }
+  @media (min-width: 900px) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: var(--s6); }
+  }
+</style>

@@ -1,0 +1,234 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Text from '../components/Text.astro';
+import event from '../data/event.yaml';
+import schedule from '../data/schedule.yaml';
+import faq from '../data/faq.yaml';
+import sponsors from '../data/sponsors.yaml';
+import sponsorship from '../data/sponsorship.yaml';
+import { url } from '../lib/url';
+
+const reg = event.registration;
+
+// Grouped like the schedule: a heading per block, one fact per line.
+const regLine = {
+  open: 'Open',
+  upcoming: `Opens ${reg.opens}`,
+  closed: 'Closed',
+}[reg.status as string];
+const facts: { label: string; lines: string[]; href?: string }[] = [
+  { label: 'When', lines: [event.dates, event.hours] },
+  { label: 'Where', lines: [event.venue, event.city, `With the ${event.partners[0].name}`] },
+  { label: 'Who', lines: [event.who, event.capacity] },
+  { label: 'Registration', lines: [regLine], href: reg.status === 'open' ? reg.url : undefined },
+  { label: 'Cost', lines: [event.cost] },
+  { label: 'Theme', lines: [event.theme] },
+];
+
+// Highest tier first on the page, so read tiers.yaml order backwards.
+const tierOrder = sponsorship.tiers.map((t: any) => t.name).reverse();
+const sponsorGroups = tierOrder
+  .map((tier: string) => ({ tier, list: sponsors.filter((s: any) => s.tier === tier) }))
+  .filter((g: any) => g.list.length);
+
+const hostNames = event.hosts.map((h: any) => h.name).join(' and ');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `${event.name} ${event.year}`,
+  startDate: new Date(event.start).toISOString(),
+  endDate: new Date(event.end).toISOString(),
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: { '@type': 'Place', name: event.venue, address: event.city },
+  organizer: event.hosts.map((h: any) => ({ '@type': 'Organization', name: h.name, url: h.url || undefined })),
+  description: event.lede.startsWith('COPY:') ? undefined : event.lede,
+};
+---
+<Layout>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero frame">
+    <div class="hero-top">
+      <h1>{event.name}</h1>
+      <p class="when"><time datetime={new Date(event.start).toISOString()}>{event.dates}</time></p>
+      <p class="muted">Hosted by {hostNames}</p>
+      <p class="lede"><Text value={event.lede} /></p>
+      <div class="actions">
+        {reg.status === 'open' && <a class="btn btn-solid" href={reg.url}>Register</a>}
+        <a class="btn btn-outline" href={url('/sponsor')}>Sponsor the event</a>
+        <a href={url('/hack-the-plains.ics')}>Add to calendar</a>
+      </div>
+    </div>
+
+    {event.hero_art && (
+      <figure class="hero-art">
+        <img src={url(event.hero_art)} alt={event.hero_art_alt} />
+      </figure>
+    )}
+
+    <dl class="fact-grid">
+      {facts.map((f) => (
+        <div>
+          <dt>{f.label}</dt>
+          {f.lines.map((l) => (
+            <dd>{f.href ? <a href={f.href}>{l}</a> : <Text value={l} />}</dd>
+          ))}
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="section frame" id="schedule">
+    <h2>Schedule</h2>
+    <div class="days">
+      {schedule.map((d: any) => (
+        <table class="day">
+          <caption>{d.day}</caption>
+          <tbody>
+            {d.rows.map((r: any) => (
+              <tr><th scope="row">{r.time}</th><td><Text value={r.item} /></td></tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
+    </div>
+  </section>
+
+  <section class="section frame" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq prose">
+      {faq.map((f: any) => (
+        <details>
+          <summary><Text value={f.q} /></summary>
+          <p><Text value={f.a} /></p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="section frame" id="sponsors">
+    <h2>Sponsors</h2>
+    {sponsorGroups.map((g: any) => (
+      <div class="sponsor-tier">
+        <h3>{g.tier}</h3>
+        <ul class="logos">
+          {g.list.map((s: any) => (
+            <li>
+              <a href={s.url}>{s.logo ? <img src={url(s.logo)} alt={s.name} /> : s.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <div class="actions sponsor-actions">
+      <a class="btn btn-outline" href={url('/sponsor')}>Become a sponsor</a>
+      <a href={url(sponsorship.packet)}>Sponsorship packet (PDF)</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: var(--s5) var(--s6);
+  }
+  @media (min-width: 900px) {
+    .hero { padding-block: var(--s7); }
+  }
+
+  .hero-top > * + * { margin-top: var(--s2); }
+
+  /* The one indulgence: the event name at poster size. 48px at 375px wraps
+     to two lines; capped at 112px, where it fits one line from 900px up. */
+  h1 {
+    font-size: clamp(3rem, 8vw + 1rem, 7rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    margin-bottom: var(--s5);
+  }
+  .when {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .lede {
+    max-width: var(--measure);
+    margin-top: var(--s5) !important;
+  }
+  .hero-top .actions { margin-top: var(--s5); }
+
+  .hero-art { margin-top: var(--s6); }
+
+  /* Same construction as the schedule: bold heading on a 2px ink rule,
+     then plain lines. One column on phones, three from 900px. */
+  .fact-grid {
+    display: grid;
+    gap: var(--s5) var(--s6);
+    margin-top: var(--s6);
+  }
+  @media (min-width: 640px) {
+    .fact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .fact-grid { grid-template-columns: repeat(3, 1fr); margin-top: var(--s7); }
+  }
+  .fact-grid dt {
+    font-weight: 700;
+    padding-bottom: var(--s2);
+    margin-bottom: var(--s2);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .days {
+    display: grid;
+    gap: var(--s6);
+  }
+  @media (min-width: 900px) {
+    .days { grid-template-columns: repeat(3, 1fr); }
+  }
+  .day { width: 100%; border-collapse: collapse; }
+  .day caption {
+    text-align: left;
+    font-weight: 700;
+    padding-bottom: var(--s2);
+    border-bottom: 2px solid var(--ink);
+  }
+  .day th, .day td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--s3) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .day th {
+    font-weight: 400;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    width: 6.5rem;
+    padding-right: var(--s4);
+  }
+
+  .faq { border-top: 1px solid var(--rule); }
+  .faq details { border-bottom: 1px solid var(--rule); }
+  .faq summary {
+    cursor: pointer;
+    font-weight: 650;
+    padding-block: var(--s4);
+  }
+  .faq details p { padding-bottom: var(--s4); }
+
+  .sponsor-tier { margin-bottom: var(--s6); }
+  .sponsor-tier h3 { margin-bottom: var(--s4); color: var(--ink-2); font-weight: 400; }
+  .logos {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s5) var(--s6);
+  }
+  /* 56px tall gives wide wordmarks and square marks similar visual weight. */
+  .logos img { height: 56px; width: auto; }
+</style>

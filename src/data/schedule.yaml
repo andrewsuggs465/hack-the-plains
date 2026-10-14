@@ -1,0 +1,17 @@
+# One entry per day. Rows show in the order written.
+- day: Friday, January 22
+  rows:
+    - time: 5:00 PM
+      item: Event starts
+    - time: TBD
+      item: "COPY: schedule item"
+- day: Saturday, January 23
+  rows:
+    - time: TBD
+      item: "COPY: schedule item"
+- day: Sunday, January 24
+  rows:
+    - time: TBD
+      item: "COPY: schedule item"
+    - time: 12:00 PM
+      item: Event ends

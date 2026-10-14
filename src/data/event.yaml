@@ -1,0 +1,51 @@
+# Everything about the event lives here. Strings starting with "COPY:" are
+# unwritten and show on the site with a dashed outline. Run `npm run check`
+# to list them.
+
+name: Hack the Plains
+year: 2027
+
+# Used for the calendar file and search results. Central time.
+start: 2027-01-22T17:00:00-06:00
+end: 2027-01-24T12:00:00-06:00
+dates: January 22–24, 2027
+hours: Friday 5:00 PM to Sunday 12:00 PM
+
+venue: Brown-Kopel Engineering Student Achievement Center
+city: Auburn University, Auburn, AL
+capacity: Up to 60 students
+who: Auburn students
+cost: "COPY: cost to attend"
+theme: Announced later
+
+lede: "COPY: one or two sentences pitching the event to students"
+
+# status: upcoming | open | closed
+#   upcoming  shows "Registration opens <opens>", no button
+#   open      shows the Register button, linking to url
+#   closed    shows "Registration is closed"
+registration:
+  status: upcoming
+  opens: TBD
+  url: ""
+
+sponsor_form: ""   # sponsor interest form link, TBD
+email: aumeshclub@outlook.com
+disclaimer: Built by Claude. All content by organizers.
+
+# Logos go in public/logos/. Leave logo empty to show the name as text.
+hosts:
+  - name: AU Mesh Club
+    url: https://aumesh.club
+    logo: /logos/au-mesh.svg
+  - name: Auburn IEEE
+    url: https://ieee.auburn.edu
+    logo: /logos/auburn-ieee.png
+partners:
+  - name: Auburn Makerspace
+    url: https://makerspace.eng.auburn.edu
+    logo: /logos/auburn-makerspace.png
+
+# Designer art for the hero. Leave empty until it exists.
+hero_art: ""
+hero_art_alt: ""

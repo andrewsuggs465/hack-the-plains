@@ -1,0 +1,127 @@
+---
+import '@fontsource-variable/libre-franklin';
+import '../styles/theme.css';
+import '../styles/base.css';
+import Org from '../components/Org.astro';
+import { url, isHome } from '../lib/url';
+import event from '../data/event.yaml';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} | ${event.name}` : `${event.name} ${event.year}`;
+const desc = description ?? `${event.dates}, ${event.venue}, ${event.city}.`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// The home page hero already shows the name at full size.
+const home = isHome(Astro.url.pathname);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <!-- Designer asset: public/favicon.svg, then uncomment.
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <!-- Designer asset: 1200x630 social image at public/og.png, then uncomment.
+    <meta property="og:image" content={new URL(url('/og.png'), Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    -->
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header frame">
+      {!home && <a class="wordmark" href={url('/')}>{event.name}</a>}
+      <nav aria-label="Main">
+        <a href={url('/#schedule')}>Schedule</a>
+        <a href={url('/#faq')}>FAQ</a>
+        <a href={url('/sponsor')}>Sponsor</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="frame">
+        <div class="orgs">
+          <div>
+            <p class="muted">Hosted by</p>
+            <div class="org-row">{event.hosts.map((o: any) => <Org org={o} />)}</div>
+          </div>
+          <div>
+            <p class="muted">In partnership with</p>
+            <div class="org-row">{event.partners.map((o: any) => <Org org={o} />)}</div>
+          </div>
+        </div>
+        <p class="footer-links">
+          <a href={`mailto:${event.email}`}>{event.email}</a>
+          <a href={url('/conduct')}>Code of Conduct</a>
+        </p>
+        <p class="muted disclaimer">{event.disclaimer}</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s2) var(--s5);
+    padding-block: var(--s4);
+  }
+  .wordmark {
+    color: var(--ink);
+    font-weight: 750;
+    text-decoration: none;
+  }
+  .site-header nav {
+    display: flex;
+    gap: var(--s5);
+  }
+  /* Under 640px the wordmark and nav do not fit on one 343px line, so the
+     nav wraps and stays left-aligned under it. */
+  @media (min-width: 640px) {
+    .site-header nav { margin-left: auto; }
+  }
+  /* Nav links are plain text until hovered; the underline marks the target,
+     there is no "current page" state on a three-link site. */
+  .site-header nav a { color: var(--ink); text-decoration: none; }
+  .site-header nav a:hover { color: var(--accent); text-decoration: underline; }
+
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    padding-block: var(--s6) var(--s7);
+  }
+  .orgs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s5) var(--s7);
+  }
+  .orgs p { margin-bottom: var(--s2); }
+  .org-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s3) var(--s5);
+  }
+  .disclaimer { margin-top: var(--s4); font-size: 0.875rem; }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s5);
+    margin-top: var(--s6);
+  }
+</style>
