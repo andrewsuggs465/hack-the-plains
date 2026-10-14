@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Text from '../components/Text.astro';
+import rules from '../data/rules.yaml';
+import { url } from '../lib/url';
+---
+<Layout title="Rules">
+  <section class="frame page">
+    <h1>Rules</h1>
+
+    <div class="rules">
+      {rules.map((r: any) => (
+        <section>
+          <h2>{r.title}</h2>
+          {r.text && <p><Text value={r.text} /></p>}
+          {r.times && (
+            <table>
+              <tbody>
+                {r.times.map((t: any) => (
+                  <tr><th scope="row"><Text value={t.when} /></th><td><Text value={t.what} /></td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {r.more && <p><Text value={r.more} /></p>}
+        </section>
+      ))}
+    </div>
+
+    <p class="conduct"><a href={url('/conduct')}>Code of Conduct</a></p>
+  </section>
+</Layout>
+
+<style>
+  .page { padding-block: var(--s6) var(--s7); }
+  h1 {
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s6);
+  }
+
+  /* One column at the 65ch measure: rules are read top to bottom, and the
+     time tables stay narrow enough to scan. */
+  .rules {
+    display: grid;
+    gap: var(--s6);
+    max-width: var(--measure);
+  }
+
+  /* Same construction as the schedule: bold heading on a 2px ink rule. */
+  .rules h2 {
+    font-size: inherit;
+    padding-bottom: var(--s2);
+    margin-bottom: var(--s3);
+    border-bottom: 2px solid var(--ink);
+  }
+  .rules p + table,
+  .rules table + p { margin-top: var(--s3); }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--s2) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-weight: 400;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    width: 11rem;
+    padding-right: var(--s4);
+  }
+
+  .conduct { margin-top: var(--s6); }
+</style>

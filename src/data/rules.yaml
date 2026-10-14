@@ -1,0 +1,51 @@
+# The /rules page. Sections show in the order written.
+# Each section has a title, and text, times, or both.
+# Times repeat schedule.yaml; when one changes, change the other.
+
+- title: Who can compete
+  text: Up to 60 Auburn students.
+
+- title: Teams
+  text: Teams form at registration, Friday 5:00 PM, and sit together at their tables.
+  more: "COPY: team size limits"
+
+- title: Friday
+  text: Teams get their design constraints and problems at 7:00 PM, then plan, work around expected challenges, and write code. No physical work.
+
+- title: Physical work
+  text: Physical work (soldering, etc.) happens only during Makerspace hours.
+  times:
+    - when: Saturday
+      what: 8:00 AM to 8:00 PM
+    - when: Sunday
+      what: 8:00 AM to 10:00 AM
+
+- title: Working overnight
+  text: Teams may work around the clock Saturday into Sunday, but no physical work (soldering, etc.) outside Makerspace hours.
+
+- title: Advisor check-ins
+  times:
+    - when: Friday 8:00 PM
+      what: Check-in 1
+    - when: Saturday 11:00 AM
+      what: Check-in 2
+    - when: Saturday 5:00 PM
+      what: Check-in 3
+    - when: Sunday 8:00 AM
+      what: Final check-in
+
+- title: Presentations and judging
+  times:
+    - when: Sunday 10:00 AM
+      what: Team presentations
+    - when: Sunday 12:00 PM
+      what: Judging
+    - when: Sunday 12:30 PM
+      what: Awards
+  more: "COPY: judging criteria"
+
+- title: What to bring
+  text: "COPY: what teams can bring (laptops, parts, code written before the event)"
+
+- title: Makerspace safety
+  text: "COPY: Makerspace safety rules and required training"
