@@ -22,12 +22,11 @@ import { url } from '../lib/url';
               </tbody>
             </table>
           )}
-          {r.more && <p><Text value={r.more} /></p>}
+          {r.more && [r.more].flat().map((m: string) => <p><Text value={m} /></p>)}
+          {r.link && <p class="link"><a href={url(r.link.href)}>{r.link.text}</a></p>}
         </section>
       ))}
     </div>
-
-    <p class="conduct"><a href={url('/conduct')}>Code of Conduct</a></p>
   </section>
 </Layout>
 
@@ -57,7 +56,9 @@ import { url } from '../lib/url';
     border-bottom: 2px solid var(--ink);
   }
   .guide p + table,
-  .guide table + p { margin-top: var(--s3); }
+  .guide table + p,
+  .guide p + p { margin-top: var(--s3); }
+  .guide p + .link { margin-top: var(--s2); }
 
   table { width: 100%; border-collapse: collapse; }
   th, td {
@@ -75,5 +76,4 @@ import { url } from '../lib/url';
     padding-right: var(--s4);
   }
 
-  .conduct { margin-top: var(--s6); }
 </style>

@@ -1,10 +1,12 @@
 ---
 // Renders a string from the data files. Strings starting with "COPY:" are
-// unwritten copy and get the dashed placeholder style.
+// unwritten copy and get the dashed placeholder style. **Like this** is bold.
 interface Props { value: string }
 const { value } = Astro.props;
 const todo = typeof value === 'string' && value.startsWith('COPY:');
 // Keep "12:00 PM" together so times never break across lines.
 const text = typeof value === 'string' ? value.replace(/(\d) (AM|PM)\b/g, '$1\u00a0$2') : value;
+// Odd-numbered pieces came from between ** pairs. They render as nodes, never as raw HTML.
+const parts = typeof text === 'string' ? text.split(/\*\*(.+?)\*\*/) : [text];
 ---
-{todo ? <span class="copy-todo">{value}</span> : text}
+{todo ? <span class="copy-todo">{value}</span> : parts.map((p, i) => (i % 2 ? <strong>{p}</strong> : p))}

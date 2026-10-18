@@ -1,13 +1,13 @@
 # The /sponsor page. Text is from the 2027 sponsorship packet.
 
 lede: >-
-  Sixty Auburn engineering students spend Friday evening through Sunday noon
+  Sixty Auburn engineering students spend Friday evening through Sunday afternoon
   designing, soldering, and debugging hardware, then demo what they built.
   Sponsors fund the parts and spend the weekend working next to the students.
 
 summary:
   - label: Format
-    value: Student-built hardware hackathon, Friday 5 PM to Sunday noon
+    value: Student-built hardware hackathon, Friday 5:00 PM to Sunday 1:00 PM
   - label: Venue
     value: Brown-Kopel Engineering Student Achievement Center, in partnership with the Auburn Makerspace
   - label: Audience
@@ -43,13 +43,11 @@ benefits:
     tiers: [Gold, Title]
   - text: 30-minute workshop or technical talk
     tiers: [Gold, Title]
-  - text: Seat on the judging panel
-    tiers: [Gold, Title]
   - text: Named in the event title and all press
     tiers: [Title]
   - text: Opening keynote slot
     tiers: [Title]
-  - text: Top billing on every surface, one sponsor only
+  - text: Top billing on every surface
     tiers: [Title]
 
 tier_note: >-
@@ -64,11 +62,11 @@ funding:
   - label: Hardware
     text: Microcontrollers, sensors, radios, and the consumables sixty students burn through in a weekend.
   - label: Food
-    text: Five meals and overnight coffee, since teams stay in the building overnight.
+    text: Five meals, drinks, and snacks.
   - label: Prizes
     text: The award budget for the general competition and the named sponsor awards.
   - label: Operations
-    text: Makerspace staffing for after-hours access, printing, signage, and shirts.
+    text: Makerspace staffing, printing, signage, and shirts.
 
 in_kind_intro: >-
   In-kind support counts toward a tier at fair market value, and for a
@@ -78,7 +76,8 @@ in_kind:
   - 3D printing filament
   - Cloud credits and API access
   - Test equipment on loan for the weekend
-  - Catering, or engineers willing to mentor for a few hours
+  - Catering
+  - Engineers willing to mentor students
 in_kind_outro: Tell us what you have and we will match it to a tier.
 
 closing: Sponsorship is open for the 2027 event.

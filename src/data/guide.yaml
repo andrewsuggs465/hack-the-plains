@@ -1,38 +1,66 @@
 # The /guide page. Sections show in the order written.
-# Each section has a title, and text, times, or both.
+# Each section has a title, plus any of text, times, more, and link.
+# more can be one string or a list of strings, one per paragraph.
+# Wrap words in **double asterisks** to bold them.
+# link (optional) shows last, as its own line: text and href.
+# An href starting with / is a page on this site, such as /conduct.
 # Times repeat schedule.yaml; when one changes, change the other.
 
+# Before the event
+
+- title: Makerspace safety
+  text: "Every participant **must complete the Makerspace Basic Safety Training before the event**. If you haven't finished it, you can't compete, and your registration fee won't be refunded."
+  more: "The training involves an online module and quiz, followed by a 1-hour in-person session. Keep in mind that sessions are scheduled based on need, so complete the training in advance to avoid scheduling issues."
+  link:
+    text: Makerspace Basic Safety Training
+    href: https://makerspace.eng.auburn.edu/training/1
+
 - title: Who can compete
-  text: Up to 60 Auburn students.
+  text: "Any Auburn engineering student."
+
+- title: Pre-registration
+  text: "We will send a pre-registration form. Completing it **guarantees your spot**. The form collects information about you and your team preference."
+  times:
+    - when: December 1, 8:00 AM
+      what: Form goes out
+    - when: January 15, 11:59 PM
+      what: Deadline
+  more: "The registration fee will be collected through Venmo. Cash payment is not an option."
 
 - title: Teams
-  text: Teams form at registration, Friday 5:00 PM, and sit together at their tables.
-  more: "COPY: team size limits"
+  text: "Teams form at registration, Friday 5:00 PM, and sit together at their tables."
+  more: "Teams will form in sizes of up to six students. Teams can be formed before the competition or at registration. Students who do not indicate a preference during registration will be automatically assigned to a team based on year and major."
+
+- title: What to bring
+  text: "Bring your laptop, charger, and any adapters or accessories you like to work with, plus paper and something to write with. Also bring your **Makerspace badge and safety glasses**. We provide the tools for the build."
+
+# During the event
 
 - title: Expectations
-  text: "COPY: event expectations and guidelines"
+  text: "Be at kickoff Friday and at presentations Sunday, and attend every advisor check-in with your team."
+  more:
+    - "All work on your project happens during the event. Follow Makerspace staff instructions, and clean up your workspace before the Makerspace closes each day."
+    - "Treat other participants, advisors, judges, and staff with respect. Everyone is expected to follow the Code of Conduct."
+  link:
+    text: Code of Conduct
+    href: /conduct
 
 - title: AI policy
-  text: "COPY: policy on AI tools"
-
-- title: Friday
-  text: Teams get their design constraints and problems at 7:00 PM, then plan, work around expected challenges, and write code. No physical work.
-
-- title: Physical work
-  text: Physical work (soldering, etc.) happens only during Makerspace hours.
+  text: "No AI during brainstorming. After your design is set, AI is welcome for software."
   times:
-    - when: Saturday
-      what: 8:00 AM to 8:00 PM
-    - when: Sunday
-      what: 8:00 AM to 10:00 AM
-
-- title: Working overnight
-  text: Teams may work around the clock Saturday into Sunday, but no physical work (soldering, etc.) outside Makerspace hours.
+    - when: Friday 7:00–8:00 PM
+      what: Brainstorming starts, AI tools off
+    - when: Friday 8:00 PM
+      what: Build phase starts, AI allowed for software
+  more:
+    - "From the moment you receive your problem until the build phase starts, **do not use AI tools** (chatbots, LLMs, AI note-takers) to research the problem, generate ideas, pick an approach, or plan how your solution will work. Research existing solutions with web search, datasheets, papers, product pages, and conversations with your teammates and advisors. If a search engine shows an AI summary, skip it and open the sources."
+    - "Once the build phase starts, **you may use AI tools for software components**: writing, debugging, and testing code. The design itself and your engineering decisions are unique to your team."
+    - "You are responsible for everything you submit and should be able to explain any part of it at presentations. If you are unsure whether something is allowed, ask an advisor."
 
 - title: Advisors
-  text: "COPY: what advisors do and how teams work with them"
+  text: "Each team is paired with an advisor. Your advisor will answer questions about the competition and help keep your build on track."
   times:
-    - when: Friday 8:00 PM
+    - when: Friday 7:00–8:00 PM
       what: Check-in 1
     - when: Saturday 11:00 AM
       what: Check-in 2
@@ -40,23 +68,40 @@
       what: Check-in 3
     - when: Sunday 8:00 AM
       what: Final check-in
+  more: "Advisors give high-level guidance to teams rather than giving answers. Expect questions that push your thinking and feedback on whether your plan fits the problem. Advisors won't be able to assist in writing code or handling parts."
 
-- title: Judging
+- title: Hardware
+  text: "Teams will be given a budget to spend on parts. Once the brainstorming phase is over, teams will be allowed to select parts for their build. Students should not bring their own hardware."
+
+- title: Physical work
+  text: "Physical work (soldering, etc.) happens **only during Makerspace hours**."
+  times:
+    - when: Saturday
+      what: 8:00 AM–8:00 PM
+    - when: Sunday
+      what: 8:00 AM–10:00 AM
+  more: "Teams may work around the clock Friday to Sunday, but no physical work is allowed outside Makerspace hours."
+
+# Sunday
+
+- title: Presentations
+  text: "Each team presents its final design and build to the judges."
   times:
     - when: Sunday 10:00 AM
-      what: Team presentations
+      what: Team presentations begin
+  more:
+    - "Teams will give a 10-minute live demonstration of their project. Teams may demonstrate the build's intended functionality, showcase software, and talk through design constraints and unique problem solutions. Slides may be used as an aid but will not count toward grading."
+    - "Each team will be given a presentation slot and all work should be completed before presentations begin."
+
+- title: Judging
+  text: "A panel of judges will decide the winner based on the final presentations."
+  times:
     - when: Sunday 12:00 PM
       what: Judging
-  more: "COPY: judging criteria"
+  more: "Judges are five distinguished professors from different disciplines within the College of Engineering. They judge impartially, using a set of criteria provided to them."
 
 - title: Prizes and awards
-  text: "COPY: prizes and award categories"
+  text: "TBD"
   times:
     - when: Sunday 12:30 PM
       what: Awards
-
-- title: What to bring
-  text: "COPY: what teams can bring (laptops, parts, code written before the event)"
-
-- title: Makerspace safety
-  text: "COPY: Makerspace safety rules and required training"

@@ -4,21 +4,21 @@
   rows:
     - time: 5:00 PM
       item: Registration and team formation
-      note: Teams sit together at their tables.
     - time: 6:00 PM
       item: Dinner and keynote speaker
     - time: 6:30 PM
       item: Event kickoff
       note: Rules, expectations, and logistics.
     - time: 7:00 PM
-      item: Design problems released
-      note: Teams get their design constraints and problems, then plan, work around expected challenges, and write code. No physical work.
+      item: Brainstorming phase
+    - time: 7:00–8:00 PM
+      item: Advisor check-in 1
     - time: 8:00 PM
-      item: Advisor check-in
+      item: Build phase
+      note: Project work can officially begin.
     - time: 10:00 PM
       item: Day 1 wrap-up
 - day: Saturday, January 23
-  note: Teams may work around the clock Saturday into Sunday, but no physical work (soldering, etc.) outside Makerspace hours.
   rows:
     - time: 8:00 AM
       item: Makerspace opens
@@ -36,6 +36,8 @@
       item: Makerspace closes
 - day: Sunday, January 24
   rows:
+    - time: 7:00 AM
+      item: Breakfast
     - time: 8:00 AM
       item: Final advisor check-in
     - time: 8:00 AM
