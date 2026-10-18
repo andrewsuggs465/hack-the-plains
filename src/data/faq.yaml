@@ -10,7 +10,7 @@
 - q: "Is food provided?"
   a: "Yes. We provide dinner Friday; breakfast, lunch, and dinner Saturday; and breakfast Sunday."
 - q: "Can I work overnight?"
-  a: "Yes. Teams may work around the clock Saturday into Sunday, but physical work only happens during Makerspace hours."
+  a: "Yes. Teams may work around the clock Friday to Sunday, but physical work only happens during Makerspace hours."
 - q: "Can I use AI?"
   a: "Not during brainstorming. Once the build phase starts, AI is allowed for software. See the participant guide for details."
 - q: "What should I bring?"
